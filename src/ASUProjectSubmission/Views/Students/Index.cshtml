@@ -1,0 +1,83 @@
+@model IEnumerable<ASUProjectSubmission.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.APIIsValid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.APIKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.APIResponse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.APIUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ASUStudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIIsValid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIKey)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIResponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ASUStudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,96 @@
+@model ASUProjectSubmission.Models.Student
+
+@{
+    ViewData["Title"] = "Submit Project";
+}
+
+<h2>Data Science Project Submission</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Add your information below</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="StudentId" />
+        <input type="hidden" asp-for="DateCreated" />
+        <input type="hidden" asp-for="FirstName" />
+        <input type="hidden" asp-for="LastName" />
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">ASU Student ID</label>
+            <div class="col-md-10">
+                <input asp-for="ASUStudentId" class="form-control" readonly />
+                <span asp-validation-for="ASUStudentId" class="text-danger" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-2 control-label">Name</label>
+            <div class="col-md-10">
+                <input class="form-control" value="@Model.FirstName @Model.LastName" readonly />                    
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="APIKey" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="APIKey" class="form-control" />
+                <span asp-validation-for="APIKey" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="APIUrl" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="APIUrl" class="form-control" />
+                <span asp-validation-for="APIUrl" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">API Response</label>
+            <div class="col-md-10">
+
+                <div class="container">
+                    <div class="col-sm-1">
+                        @if (Model.APIIsValid)
+                        {
+                            <button class="btn btn-success">
+                                <span class="fa fa-check-circle fa-3x" aria-hidden="true"></span>
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning">
+                                <span class="fa fa-exclamation-circle fa-3x" aria-hidden="true"></span>
+                            </button>
+                        }
+                    </div>
+                    <div class="col-sm-6">
+                        <kbd>@Model.APIResponse</kbd>
+                    </div>
+                </div>
+
+
+                
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
