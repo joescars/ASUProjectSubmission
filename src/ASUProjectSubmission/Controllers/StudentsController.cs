@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ASUProjectSubmission.Data;
 using ASUProjectSubmission.Models;
 using ASUProjectSubmission.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASUProjectSubmission.Controllers
 {
@@ -21,6 +22,7 @@ namespace ASUProjectSubmission.Controllers
         }
 
         // GET: Students
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Student.ToListAsync());
@@ -101,7 +103,7 @@ namespace ASUProjectSubmission.Controllers
 
                     ResponseService.Result result = await APIsValid(student.APIKey, student.APIUrl);
                     student.APIIsValid = result.IsValid;
-                    student.APIResponse = result.ResponseContent;
+                    student.APIResponse = result.ResponseContent;                    
 
                     student.DateModified = DateTime.Now;
                     _context.Update(student);
@@ -118,7 +120,12 @@ namespace ASUProjectSubmission.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                // Show msg based on api result
+                var msg = "fail";
+                if (student.APIIsValid == true)
+                    msg = "success";
+
+                return RedirectToAction("Edit", new { msg = msg });
             }
             return View(student);
         }
@@ -161,6 +168,19 @@ namespace ASUProjectSubmission.Controllers
             var rs = new ResponseService();
             ResponseService.Result result = await rs.InvokeRequestResponseService(apiKey, apiUrl);
             return result;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SearchByASUStudentId(int ASUStudentId)
+        {
+            //Search for the student by ID
+            var student = await _context.Student.SingleOrDefaultAsync(m => m.ASUStudentId == ASUStudentId);
+            if(student == null)
+            {
+                return RedirectToAction("Index", "Home", new { msg = "notfound" });
+            }
+            return RedirectToAction("Edit", "Students", new { id = student.StudentId });
         }
     }
 }

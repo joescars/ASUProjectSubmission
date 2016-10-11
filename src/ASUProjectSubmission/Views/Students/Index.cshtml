@@ -13,31 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.APIIsValid)
+                API Verified
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.APIKey)
+                First Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.APIResponse)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.APIUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ASUStudentId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateModified)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                Last Name
             </th>
             <th></th>
         </tr>
@@ -46,25 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.APIIsValid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APIKey)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APIResponse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APIUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ASUStudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
+                @if (item.APIIsValid)
+                {
+                    <button class="btn btn-success btn-sm">
+                        <span class="fa fa-check-circle" aria-hidden="true"></span>
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-warning btn-sm">
+                        <span class="fa fa-exclamation-circle" aria-hidden="true"></span>
+                    </button>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -74,8 +49,8 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> 
+                @*<a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>*@
             </td>
         </tr>
 }

@@ -48,3 +48,12 @@ textarea {
     display: none
   }
 }
+
+/* Custom Styles */
+/* Longer text boxes for URL input*/
+.longBox {
+    max-width: none;
+}
+.asuLogo {
+    width: 400px; margin-top: 25px; margin-left: 25px;
+}
