@@ -2,6 +2,8 @@
 # Arizona State University Project Submission
 Website allowing students to submit their Azure Machine Learning & Data Science final. Submissions are in the form of a Web API endpoint and Key.  
 
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
+
 ## Instructions
 
 1. Enter your Student ID and click "search"
