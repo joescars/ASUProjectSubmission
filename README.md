@@ -1,4 +1,4 @@
-![ASU Logo](/ASUProjectSubmission/wwwroot/images/asu_logo_2.png)
+![ASU Logo](/Website/ASUProjectSubmission/wwwroot/images/asu_logo_2.png)
 # Arizona State University Project Submission
 Website allowing students to submit their Azure Machine Learning & Data Science final. Submissions are in the form of a Web API endpoint and Key.  
 
