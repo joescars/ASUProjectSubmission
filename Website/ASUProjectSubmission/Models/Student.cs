@@ -17,6 +17,7 @@ namespace ASUProjectSubmission.Models
         public string LastName { get; set; }
         public string APIUrl { get; set; }
         public string APIKey { get; set; }
+        public string RequestBody { get; set; }
         public string APIResponse { get; set; }
         public bool APIIsValid { get; set; }
         public DateTime DateCreated { get; set; }

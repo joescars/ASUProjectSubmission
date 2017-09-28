@@ -89,7 +89,7 @@ namespace ASUProjectSubmission.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("StudentId,APIKey,APIUrl,ASUStudentId,DateCreated,DateModified,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Edit(Guid id, [Bind("StudentId,APIKey,APIUrl,ASUStudentId,DateCreated,DateModified,FirstName,LastName,RequestBody")] Student student)
         {
             if (id != student.StudentId)
             {
@@ -101,7 +101,7 @@ namespace ASUProjectSubmission.Controllers
                 try
                 {
 
-                    ResponseService.Result result = await APIsValid(student.APIKey, student.APIUrl);
+                    ResponseService.Result result = await APIsValid(student.APIKey, student.APIUrl, student.RequestBody);
                     student.APIIsValid = result.IsValid;
                     student.APIResponse = result.ResponseContent;                    
 
@@ -163,10 +163,10 @@ namespace ASUProjectSubmission.Controllers
             return _context.Student.Any(e => e.StudentId == id);
         }
 
-        private async Task<ResponseService.Result> APIsValid(string apiKey, string apiUrl)
+        private async Task<ResponseService.Result> APIsValid(string apiKey, string apiUrl, string requestBody)
         {
             var rs = new ResponseService();
-            ResponseService.Result result = await rs.InvokeRequestResponseService(apiKey, apiUrl);
+            ResponseService.Result result = await rs.InvokeRequestResponseService(apiKey, apiUrl, requestBody);
             return result;
         }
 
