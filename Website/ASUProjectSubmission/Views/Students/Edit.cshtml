@@ -68,6 +68,15 @@
         </div>
 
         <div class="form-group">
+            <label class="col-md-2 control-label">Sample Request Body</label>
+
+            <div class="col-md-10">
+                <textarea asp-for="RequestBody" class="form-control longBox" style="height: 300px;"></textarea>                
+                <span asp-validation-for="RequestBody" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="col-md-2 control-label">API Response</label>
             <div class="col-md-10">
                 @if (Model.APIResponse != null)
