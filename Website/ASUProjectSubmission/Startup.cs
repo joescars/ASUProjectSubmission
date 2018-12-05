@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using ASUProjectSubmission.Data;
 using ASUProjectSubmission.Models;
 using ASUProjectSubmission.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASUProjectSubmission
 {
@@ -64,7 +65,6 @@ namespace ASUProjectSubmission
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
